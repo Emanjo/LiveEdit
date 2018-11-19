@@ -18,12 +18,21 @@ class DocumentsTableSeeder extends Seeder
       //To make fake data
       $faker = \Faker\Factory::create();
 
-        for ($i = 0; $i < 50; $i++) {
-            Documents::create([
-                'title' => $faker->sentence,
-                'body' => $faker->paragraph,
-            ]);
-        }
-        
+      for ($i = 0; $i < 5; $i++) {
+          Documents::create([
+              'title' => $faker->sentence,
+              'body' => $faker->paragraph,
+              'user_id' => 1
+          ]);
+      }
+
+      for ($i = 0; $i < 5; $i++) {
+          Documents::create([
+              'title' => $faker->sentence,
+              'body' => $faker->paragraph,
+              'user_id' => 2
+          ]);
+      }
+
     }
 }

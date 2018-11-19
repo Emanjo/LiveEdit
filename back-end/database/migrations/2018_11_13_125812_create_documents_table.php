@@ -18,6 +18,11 @@ class CreateDocumentsTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->timestamps();
+            $table->integer('user_id')->unsigned();
+        });
+
+        Schema::table('documents', function (Blueprint $table) {
+          $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
