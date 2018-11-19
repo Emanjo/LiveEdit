@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Documents;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,7 @@ Route::get('documents/{documents}', 'DocumentsController@show');
 Route::post('documents', 'DocumentsController@store');
 Route::put('documents/{documents}', 'DocumentsController@update');
 Route::delete('documents/{documents}', 'DocumentsController@delete');
+
+Route::get('users', 'UsersController@index');
+Route::get('users/{user}', 'UsersController@show');
+Route::post('users', 'UsersController@store');
