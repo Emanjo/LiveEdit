@@ -1,39 +1,43 @@
 <template>
   <section class="container">
     <div>
-      <logo/>
       <h1 class="title">
-        front-end
+        Live-edit
       </h1>
       <h2 class="subtitle">
-        My premium Nuxt.js project
+        Edit text with people in real-time
       </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
+      <form v-on:submit.prevent="logIn" class="form" action="" method="post">
+        <h2 class="form-title">Log in</h2>
+        <label class="form-label" for="username">Username:</label>
+        <input v-model="username" class="form-input" type="text" id="username">
+        <label class="form-label" for="password">Password:</label>
+        <input v-model="password" class="form-input" type="password" id="password">
+        <button class="button-green" type="submit">Sign in</button>
+        <small>Don't have an account yet? <nuxt-link to="/sign-up" class="link">Sign up here.</nuxt-link></small>
+      </form>
     </div>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Logo from "~/components/Logo.vue";
 
 export default {
-  components: {
-    Logo
+  components: {},
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    logIn() {}
   }
-}
+};
 </script>
 
 <style>
-
 .container {
   min-height: 100vh;
   display: flex;
@@ -42,25 +46,46 @@ export default {
   text-align: center;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 50px;
+  border-radius: 5px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.form-title {
+  font-weight: normal;
+  margin: 20px 0;
+  font-size: 2em;
+  margin-top: 0;
 }
 
-.links {
-  padding-top: 15px;
+.form-label {
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+
+.form-input {
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #a3a3a3;
+  min-height: 30px;
+  font-size: 1.2em;
+  overflow: visible;
+}
+
+form button {
+  margin: 30px auto 0;
+}
+
+small {
+  margin-top: 30px;
+}
+
+.link {
+  text-decoration: none;
+  font-weight: bold;
+  font-style: italic;
 }
 </style>
