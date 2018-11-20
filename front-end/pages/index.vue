@@ -9,8 +9,8 @@
       </h2>
       <form v-on:submit.prevent="logIn" class="form" action="" method="post">
         <h2 class="form-title">Log in</h2>
-        <div v-if="noUser" class="warning">
-          <p>No user with the email <div class="warning-email">"{{ username }}"</div> is found!</p>
+        <div v-if="errorShow" class="warning">
+          <p>{{ errorMessage }}</p>
         </div>
         <label class="form-label" for="username">Username:</label>
         <input v-model="username" class="form-input" type="text" id="username">
@@ -32,33 +32,38 @@ export default {
     return {
       username: "",
       password: "",
-      noUser: false,
+      errorShow: false,
+      errorMessage: '',
     };
   },
   methods: {
     logIn() {
-      const baseUrl =
-        window.location.protocol +
-        "//" +
-        window.location.hostname +
-        "/liveedit/back-end/public/api";
-      console.log(baseUrl);
 
-      const axios = require('axios');
+      if (this.username === "" || this.password === "") {
+        this.errorMessage = "You need to fill all fields";
+        this.errorShow = true;
+      } else {
+        const baseUrl =
+          window.location.protocol +
+          "//" +
+          window.location.hostname +
+          "/liveedit/back-end/public/api";
+
+        const axios = require('axios');
 
         axios
         .get(baseUrl + "/users")
         .then(response => {
           // handle success
-          //this.username doesen't work in this scope. Why?
           const user = response.data.find(el => el.email === this.username);
 
           console.log(user);
 
-          if (!user ) {
-            this.noUser = true;
+          if ( user === undefined ) {
+            this.errorShow = true;
+            this.errorMessage = "No user with that email is found!";
           } else {
-            this.noUser = false
+            this.errorShow = false;
             this.username = this.username;
           }
 
@@ -67,6 +72,7 @@ export default {
           // handle error
           console.log(error);
         });
+      }
     }
   }
 };
@@ -87,6 +93,8 @@ export default {
   background-color: white;
   padding: 50px;
   border-radius: 5px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .form-title {
