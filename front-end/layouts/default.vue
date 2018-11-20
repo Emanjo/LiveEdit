@@ -71,4 +71,56 @@ html {
   word-spacing: 5px;
   margin-bottom: 40px;
 }
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 50px 200px;
+  border-radius: 5px;
+}
+
+.form-title {
+  font-weight: normal;
+  margin: 20px 0;
+  font-size: 2em;
+  margin-top: 0;
+}
+
+.form-label {
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+
+.form-input {
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #a3a3a3;
+  min-height: 30px;
+  font-size: 1.2em;
+}
+
+form button {
+  margin: 30px auto 0;
+}
+
+.warning {
+  background: #ff4c4c;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+
 </style>

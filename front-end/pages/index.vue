@@ -1,6 +1,5 @@
 <template>
-  <section class="container">
-    <div>
+    <div class="container">
       <h1 class="title">
         Live-edit
       </h1>
@@ -20,7 +19,6 @@
         <small>Don't have an account yet? <nuxt-link to="/sign-up" class="link">Sign up here.</nuxt-link></small>
       </form>
     </div>
-  </section>
 </template>
 
 <script>
@@ -77,69 +75,16 @@ export default {
 };
 </script>
 
-<style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style scoped>
 
-.form {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 50px;
-  border-radius: 5px;
-  max-width: 500px;
-  margin: 0 auto;
-}
+  small {
+    margin-top: 30px;
+  }
 
-.form-title {
-  font-weight: normal;
-  margin: 20px 0;
-  font-size: 2em;
-  margin-top: 0;
-}
+  .link {
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+  }
 
-.form-label {
-  align-self: flex-start;
-  margin-bottom: 10px;
-}
-
-.form-input {
-  margin-bottom: 10px;
-  border-radius: 4px;
-  border: 1px solid #a3a3a3;
-  min-height: 30px;
-  font-size: 1.2em;
-  overflow: visible;
-}
-
-form button {
-  margin: 30px auto 0;
-}
-
-small {
-  margin-top: 30px;
-}
-
-.link {
-  text-decoration: none;
-  font-weight: bold;
-  font-style: italic;
-}
-
-.warning {
-  background: #ff4c4c;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.warning-email {
-  font-weight: bold;
-}
 </style>
