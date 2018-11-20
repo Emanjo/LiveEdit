@@ -9,6 +9,9 @@
       </h2>
       <form v-on:submit.prevent="logIn" class="form" action="" method="post">
         <h2 class="form-title">Log in</h2>
+        <div v-if="noUser" class="warning">
+          <p>No user with the email <div class="warning-email">"{{ username }}"</div> is found!</p>
+        </div>
         <label class="form-label" for="username">Username:</label>
         <input v-model="username" class="form-input" type="text" id="username">
         <label class="form-label" for="password">Password:</label>
@@ -28,11 +31,43 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      noUser: false,
     };
   },
   methods: {
-    logIn() {}
+    logIn() {
+      const baseUrl =
+        window.location.protocol +
+        "//" +
+        window.location.hostname +
+        "/liveedit/back-end/public/api";
+      console.log(baseUrl);
+
+      const axios = require('axios');
+
+        axios
+        .get(baseUrl + "/users")
+        .then(response => {
+          // handle success
+          //this.username doesen't work in this scope. Why?
+          const user = response.data.find(el => el.email === this.username);
+
+          console.log(user);
+
+          if (!user ) {
+            this.noUser = true;
+          } else {
+            this.noUser = false
+            this.username = this.username;
+          }
+
+        })
+        .catch(error => {
+          // handle error
+          console.log(error);
+        });
+    }
   }
 };
 </script>
@@ -87,5 +122,17 @@ small {
   text-decoration: none;
   font-weight: bold;
   font-style: italic;
+}
+
+.warning {
+  background: #ff4c4c;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.warning-email {
+  font-weight: bold;
 }
 </style>
