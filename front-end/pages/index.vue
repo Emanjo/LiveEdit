@@ -59,12 +59,11 @@ export default {
 
           console.log(user);
 
-          if ( user === undefined ) {
+          if ( typeof(user) === "undefined" ) {
             this.errorShow = true;
             this.errorMessage = "No user with that email is found!";
           } else {
             this.errorShow = false;
-            this.username = this.username;
           }
 
         })
