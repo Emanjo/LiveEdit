@@ -1,7 +1,7 @@
 {
-  "name": "front-end",
+  "name": "live-edit",
   "version": "1.0.0",
-  "description": "My premium Nuxt.js project",
+  "description": "edit text in real-time",
   "author": "Emil Johannessen",
   "private": true,
   "scripts": {
@@ -11,8 +11,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.0.0",
-    "axios": "^0.18.0",
+    "@nuxtjs/auth": "^4.5.3",
+    "@nuxtjs/axios": "^5.3.6",
     "cross-env": "^5.2.0",
     "nuxt": "^2.0.0"
   },

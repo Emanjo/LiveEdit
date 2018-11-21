@@ -33,20 +33,45 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    './plugins/mixins/user',
+    './plugins/mixins/validation',
+    './plugins/axios'
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+  '@nuxtjs/axios',
+  '@nuxtjs/auth'
   ],
-  /*
-  ** Axios module configuration
-  */
+
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    baseURL: 'http://localhost/liveedit/back-end/public/api'
+  },
+
+  auth: {
+    endpoints: {
+      login: {
+        url: 'login', method: 'post', propertyName: 'meta.token'
+      },
+      user: {
+        url: 'me', method: 'get', propertyName: 'data'
+      },
+      logout: {
+        url: 'logout', method: 'post'
+      },
+    }
+  },
+
+  redirect: {
+    home: '/dashboard'
+  },
+
+  router: {
+    middleware: [
+      'clearValidationErrors'
+    ]
   },
 
   /*
@@ -57,7 +82,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+
     }
   }
 }

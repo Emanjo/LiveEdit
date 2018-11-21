@@ -15,9 +15,16 @@ use App\User;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('register', 'Auth\AuthController@register');
+Route::post('login', 'Auth\AuthController@login');
+Route::post('logout', 'Auth\AuthController@logout');
+
+
+Route::get('me', 'Auth\AuthController@me');
 
 Route::get('documents', 'DocumentsController@index');
 Route::get('documents/{documents}', 'DocumentsController@show');

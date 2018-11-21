@@ -110,16 +110,20 @@ html {
   font-size: 1.2em;
 }
 
+.input-error {
+  border: 1px solid red;
+
+}
+
 form button {
   margin: 30px auto 0;
 }
 
-.warning {
-  background: #ff4c4c;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
+.errorMessage {
+  color: red;
+  align-self: flex-start;
   margin-bottom: 10px;
+  font-size: 0.8em;
 }
 
 

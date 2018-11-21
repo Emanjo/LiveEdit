@@ -1,6 +1,6 @@
-# front-end
+# live-edit
 
-> My premium Nuxt.js project
+> edit text in real-time
 
 ## Build Setup
 
