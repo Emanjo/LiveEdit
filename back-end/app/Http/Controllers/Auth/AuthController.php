@@ -46,7 +46,7 @@ class AuthController extends Controller {
 
     return response()->json([
         'errors' => [
-            'email' => ['There is something wrong! We could not verify details.']
+            'email' => ['There is something wrong! We could not verify your details. Try again.']
     ]], 422);
 
   }

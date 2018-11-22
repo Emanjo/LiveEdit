@@ -45,6 +45,7 @@ html {
 .button-green:hover {
   color: #fff;
   background-color: #51b759;
+  cursor: pointer;
 }
 
 .button-red {
@@ -55,6 +56,7 @@ html {
 .button-red:hover {
   color: #fff;
   background-color: #e24a4a;
+  cursor: pointer;
 }
 
 .title {
@@ -124,6 +126,11 @@ form button {
   align-self: flex-start;
   margin-bottom: 10px;
   font-size: 0.8em;
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
 }
 
 
