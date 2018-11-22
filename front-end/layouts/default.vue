@@ -16,7 +16,6 @@ html {
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
   color: #35495e;
   background-color: #eeeeee;
   min-height: 100vh;
