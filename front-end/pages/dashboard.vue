@@ -1,19 +1,39 @@
 <template>
   <div class="dash-container">
+      <div class="files">
+        <h1>Welcome, {{ user.name }}</h1>
+        <h3>Your files:</h3>
+        <form class="files-list"  method="post">
+          <div>
+          <input type="radio" name="file" value="dummy"> dummydummydummydummydummydummydummydummydummy
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> dummy
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> dummy
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> dummy
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> dummy
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> dummy
+          </div>
+        </form>
 
-    <section>
-      <h1>Welcome, {{ user.name }}</h1>
-      <h3>Your files:</h3>
-    </section>
+      </div>
 
-    <div class="editor">
+    <div class="editor-container">
         <h1 class="title">
           Live-edit
         </h1>
         <h2 class="subtitle">
           Edit text with people in real-time
         </h2>
-      <vue-editor></vue-editor>
+      <vue-editor class="editor"></vue-editor>
     </div>
 
     <button @click.prevent="logout" class="logout-btn">Logout</button>
@@ -72,6 +92,40 @@ if (process.browser) {
 
 .logout-btn:active {
   box-shadow: 0px 0px 7px 1px darkred inset;
+}
+
+.dash-container {
+  padding: 100px ;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+
+}
+
+.files {
+  margin-right: 40px;
+  margin-bottom: 40px;
+}
+
+.files-list {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  margin-top: 20px;
+
+}
+
+.editor-container {
+  max-width: 900px;
+}
+
+.editor {
+  text-align: left;
+  background: white;
 }
 
 
