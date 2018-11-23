@@ -5,25 +5,29 @@
         <h3>Your files:</h3>
         <form class="files-list"  method="post">
           <div>
-          <input type="radio" name="file" value="dummy"> dummydummydummydummydummydummydummydummydummy
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
           </div>
           <div>
-          <input type="radio" name="file" value="dummy"> dummy
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
           </div>
           <div>
-          <input type="radio" name="file" value="dummy"> dummy
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
           </div>
           <div>
-          <input type="radio" name="file" value="dummy"> dummy
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
           </div>
           <div>
-          <input type="radio" name="file" value="dummy"> dummy
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
           </div>
           <div>
-          <input type="radio" name="file" value="dummy"> dummy
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
           </div>
         </form>
-
+          <div class="files-buttons">
+            <button class="button-green" type="button" name="new">New</button>
+            <button class="button-yellow" type="button" name="save">Edit</button>
+            <button class="button-red" type="button" name="delete">Delete</button>
+          </div>
       </div>
 
     <div class="editor-container">
@@ -95,28 +99,39 @@ if (process.browser) {
 }
 
 .dash-container {
+  display: flex;
+  flex-direction: row;
   padding: 100px ;
   text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
   flex-wrap: wrap;
+  justify-content: center;
+  height: inherit;
+  min-height: 100vh;
 
 }
 
 .files {
   margin-right: 40px;
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .files-list {
-  display: flex;
-  flex-direction: column;
   background: white;
   padding: 40px;
   border-radius: 20px;
   margin-top: 20px;
+}
 
+.files-buttons {
+  display: flex;
+  justify-content:space-around;
+  margin-top: 20px;
+}
+
+.files-list p {
+  display: inline-block;
 }
 
 .editor-container {
@@ -126,6 +141,11 @@ if (process.browser) {
 .editor {
   text-align: left;
   background: white;
+}
+
+.files h1 {
+  font-size: 1.6em;
+  font-weight: lighter;
 }
 
 

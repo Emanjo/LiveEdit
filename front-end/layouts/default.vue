@@ -18,7 +18,6 @@ html {
   -webkit-font-smoothing: antialiased;
   color: #35495e;
   background-color: #eeeeee;
-  min-height: 100vh;
 }
 
 *,
@@ -29,7 +28,7 @@ html {
 }
 
 .button-green,
-.button-red {
+.button-red, .button-yellow {
   display: inline-block;
   border-radius: 4px;
   padding: 10px 30px;
@@ -55,6 +54,17 @@ html {
 .button-red:hover {
   color: #fff;
   background-color: #e24a4a;
+  cursor: pointer;
+}
+
+.button-yellow {
+  border: 1px solid #a3a3a3;
+  color: #cec900;
+}
+
+.button-yellow:hover {
+  color: #fff;
+  background-color: #cec900;
   cursor: pointer;
 }
 
