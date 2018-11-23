@@ -5,7 +5,7 @@
         <h3>Your files:</h3>
         <form class="files-list"  method="post">
           <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
+          <input type="radio" name="file" value="dummy"> <p>dummy dummy dummy dummy dummy dummy dummy</p>
           </div>
           <div>
           <input type="radio" name="file" value="dummy"> <p>dummy</p>
@@ -132,6 +132,19 @@ if (process.browser) {
 
 .files-list p {
   display: inline-block;
+  max-width: 100%;
+}
+
+.files-list div {
+  display: flex;
+  align-items: center;
+  max-width: 50%;
+  margin: 10px auto;
+  overflow-wrap: break-word;
+}
+
+.files-list div input {
+  margin-right: 5px;
 }
 
 .editor-container {
