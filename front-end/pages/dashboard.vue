@@ -1,11 +1,32 @@
 <template>
-  <div class="dash-container">
-      <div class="files">
+  <div class="dash-container columns">
+      <div class="files column">
         <h1>Welcome, {{ user.name }}</h1>
         <h3>Your files:</h3>
         <form class="files-list"  method="post">
           <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy dummy dummy dummy dummy dummy dummy</p>
+          <input type="radio" name="file" value="dummy"> <p>dummydummydummydummydummydummydummydummydummydummydummydummydummydummydummydummydummydummy</p>
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
+          </div>
+          <div>
+          <input type="radio" name="file" value="dummy"> <p>dummy</p>
           </div>
           <div>
           <input type="radio" name="file" value="dummy"> <p>dummy</p>
@@ -23,14 +44,14 @@
           <input type="radio" name="file" value="dummy"> <p>dummy</p>
           </div>
         </form>
-          <div class="files-buttons">
-            <button class="button-green" type="button" name="new">New</button>
-            <button class="button-yellow" type="button" name="save">Edit</button>
-            <button class="button-red" type="button" name="delete">Delete</button>
+          <div class="files-buttons columns">
+            <button class="button-green column" type="button" name="new">New</button>
+            <button class="button-yellow column" type="button" name="save">Edit</button>
+            <button class="button-red column" type="button" name="delete">Delete</button>
           </div>
       </div>
 
-    <div class="editor-container">
+    <div class="editor-container column is-two-thirds">
         <h1 class="title">
           Live-edit
         </h1>
@@ -38,6 +59,7 @@
           Edit text with people in real-time
         </h2>
       <vue-editor class="editor"></vue-editor>
+      <button class="button-green" type="button" name="save">Save</button>
     </div>
 
     <button @click.prevent="logout" class="logout-btn">Logout</button>
@@ -99,22 +121,15 @@ if (process.browser) {
 }
 
 .dash-container {
-  display: flex;
-  flex-direction: row;
   padding: 100px ;
   text-align: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: inherit;
-  min-height: 100vh;
 
 }
 
 .files {
   margin-right: 40px;
   margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
+  width: 300px;
 }
 
 .files-list {
@@ -124,10 +139,12 @@ if (process.browser) {
   margin-top: 20px;
 }
 
-.files-buttons {
-  display: flex;
-  justify-content:space-around;
-  margin-top: 20px;
+.files-buttons, .editor-container button {
+  margin: 20px 10px 0;
+}
+
+.files-buttons button {
+  margin: 0 20px;
 }
 
 .files-list p {
@@ -136,10 +153,8 @@ if (process.browser) {
 }
 
 .files-list div {
-  display: flex;
-  align-items: center;
-  max-width: 50%;
-  margin: 10px auto;
+  width: 50%;
+  margin: auto;
   overflow-wrap: break-word;
 }
 
