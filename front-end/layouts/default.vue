@@ -90,7 +90,7 @@ html {
   justify-content: center;
   text-align: center;
   max-width: 700px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .form {

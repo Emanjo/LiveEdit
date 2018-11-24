@@ -5,18 +5,6 @@
         <h3>Your files:</h3>
         <form class="files-list"  method="post">
           <div>
-          <input type="radio" name="file" value="dummy"> <p>dummydummydummydummydummydummydummydummydummydummydummydummydummydummydummydummydummydummy</p>
-          </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
-          </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
-          </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
-          </div>
-          <div>
           <input type="radio" name="file" value="dummy"> <p>dummy</p>
           </div>
           <div>
@@ -58,11 +46,14 @@
         <h2 class="subtitle">
           Edit text with people in real-time
         </h2>
-      <vue-editor class="editor"></vue-editor>
+        <div class="doc-title-container">
+          <h3>Document title:</h3><input type="text" name="title" v-model="title">
+        </div>
+      <vue-editor class="editor" v-model="content"></vue-editor>
       <button class="button-green" type="button" name="save">Save</button>
     </div>
 
-    <button @click.prevent="logout" class="logout-btn">Logout</button>
+    <button @click.prevent="logout" class="logout-btn">Log out</button>
   </div>
 </template>
 
@@ -77,8 +68,9 @@ if (process.browser) {
   export default {
     asyncData() {
       return {
-        content: '',
-        pageIsMounted: false
+        content: 'Write some text here...',
+        title: 'Document title',
+        pageIsMounted: false,
       }
     },
     components: { VueEditor },
@@ -105,7 +97,6 @@ if (process.browser) {
   top: 40px;
   right: 40px;
   font-size: 1.3em;
-  font-weight: bold;
   border-radius: 5px;
 }
 
@@ -117,13 +108,17 @@ if (process.browser) {
 }
 
 .logout-btn:active {
-  box-shadow: 0px 0px 7px 1px darkred inset;
+  box-shadow: 0px 0px 3px 1px darkred inset;
+  transform:scale(0.97);
 }
 
 .dash-container {
-  padding: 100px ;
+  padding: 100px 100px 0 100px ;
   text-align: center;
 
+}
+
+ .editor {
 }
 
 .files {
@@ -174,6 +169,25 @@ if (process.browser) {
 .files h1 {
   font-size: 1.6em;
   font-weight: lighter;
+}
+
+.doc-title-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.doc-title-container input {
+  flex-grow: 1;
+  font-size: 1.5em;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: darkgrey solid 1px;
+  padding-left: 3px;
+}
+
+.doc-title-container h3 {
+  font-size: 1.5em;
+  color: darkgrey;
 }
 
 

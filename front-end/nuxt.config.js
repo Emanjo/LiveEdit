@@ -51,19 +51,18 @@ module.exports = {
     baseURL: 'http://localhost/liveedit/back-end/public/api'
   },
 
-  auth: {
-    endpoints: {
-      login: {
-        url: 'login', method: 'post', propertyName: 'meta.token'
-      },
-      user: {
-        url: 'me', method: 'get', propertyName: 'data'
-      },
-      logout: {
-        url: 'logout', method: 'post'
-      },
+auth: {
+  strategies: {
+    local: {
+      endpoints: {
+        login: { url: 'login', method: 'post', propertyName: 'meta.token' },
+        user: { url: 'me', method: 'get', propertyName: 'data' },
+        logout: { url: 'logout', method: 'post' },
+      }
     }
-  },
+  }
+},
+
 
   redirect: {
     home: '/dashboard'
