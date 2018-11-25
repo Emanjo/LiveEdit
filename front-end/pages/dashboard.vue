@@ -12,7 +12,7 @@
           </div>
         </form>
           <div class="files-buttons columns">
-            <button class="button-green column" type="button" name="new">New</button>
+            <button class="button-green column" v-on:click="newFile" type="button" name="new">New</button>
             <button class="button-yellow column" type="button" name="save">Edit</button>
             <button class="button-red column" type="button" name="delete">Delete</button>
           </div>
@@ -26,10 +26,10 @@
           Edit text with people in real-time
         </h2>
         <div class="doc-title-container">
-          <h3>Document title:</h3><input type="text" name="title" v-model="title">
+          <h3>Document title:</h3><input type="text" name="title" v-model="form.title">
         </div>
       <no-ssr>
-        <vue-editor class="editor" v-model="content"></vue-editor>
+        <vue-editor class="editor" v-model="form.body"></vue-editor>
       </no-ssr>
       <button class="button-green" type="button" name="save">Save</button>
     </div>
@@ -49,10 +49,13 @@ if (process.browser) {
   export default {
     data() {
       return {
-        content: 'Write some text here...',
-        title: 'Document title',
         documents: [],
         loading: true,
+        form: {
+          title: 'Document title',
+          body: 'Write content here...',
+          user_id: this.$auth.user.id
+        }
       }
     },
     asyncData() {
@@ -73,7 +76,11 @@ if (process.browser) {
         const doc = await this.$axios.get('documents/' + this.user.id)
         this.loading = false;
         return this.documents = doc;
-      }
+      },
+      async newFile() {
+        await this.$axios.post('documents', this.form);
+        this.fetchData();
+      },
     },
     created() {
       this.fetchData();
