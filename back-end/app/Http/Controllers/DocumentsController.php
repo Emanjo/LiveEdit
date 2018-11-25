@@ -18,6 +18,13 @@ class DocumentsController extends Controller
       return $documents;
   }
 
+  public function showDocList($id)
+  {
+      $documents = Documents::where('user_id', $id)->get();
+
+      return response()->json($documents, 200);
+  }
+
   public function store(Request $request)
   {
       $documents = Documents::create($request->all());

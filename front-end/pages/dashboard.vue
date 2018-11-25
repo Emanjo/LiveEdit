@@ -4,32 +4,11 @@
         <h1>Welcome, {{ user.name }}</h1>
         <h3>Your files:</h3>
         <form class="files-list"  method="post">
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
+          <div class="loading" v-if="loading">
+            <img src="../assets/img/loading.png" alt="Loading symbol">
           </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
-          </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
-          </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
-          </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
-          </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
-          </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
-          </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
-          </div>
-          <div>
-          <input type="radio" name="file" value="dummy"> <p>dummy</p>
+          <div v-for="document in documents.data">
+          <input type="radio" name="file" value="document.id"> <p>{{ document.title }}</p>
           </div>
         </form>
           <div class="files-buttons columns">
@@ -49,12 +28,14 @@
         <div class="doc-title-container">
           <h3>Document title:</h3><input type="text" name="title" v-model="title">
         </div>
-      <vue-editor class="editor" v-model="content"></vue-editor>
+      <no-ssr>
+        <vue-editor class="editor" v-model="content"></vue-editor>
+      </no-ssr>
       <button class="button-green" type="button" name="save">Save</button>
     </div>
 
     <button @click.prevent="logout" class="logout-btn">Log out</button>
-  </div>
+</div>
 </template>
 
 <script>
@@ -66,11 +47,17 @@ if (process.browser) {
 }
 
   export default {
-    asyncData() {
+    data() {
       return {
         content: 'Write some text here...',
         title: 'Document title',
+        loading: true,
+      }
+    },
+    asyncData() {
+      return {
         pageIsMounted: false,
+        documents: [],
       }
     },
     components: { VueEditor },
@@ -81,7 +68,15 @@ if (process.browser) {
       },
       reloadWindow() {
         window.location.reload(true)
+      },
+      async fetchData() {
+        const doc = await this.$axios.get('documents/' + this.user.id)
+        this.loading = false;
+        return this.documents = doc;
       }
+    },
+    created() {
+      this.fetchData();
     }
   }
 </script>
@@ -132,14 +127,21 @@ if (process.browser) {
   padding: 40px;
   border-radius: 20px;
   margin-top: 20px;
+  display: inline-flex;
+  flex-wrap: wrap;
 }
 
 .files-buttons, .editor-container button {
   margin: 20px 10px 0;
 }
 
+.files-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .files-buttons button {
-  margin: 0 20px;
+  margin: 10px 20px;
 }
 
 .files-list p {
@@ -148,13 +150,15 @@ if (process.browser) {
 }
 
 .files-list div {
-  width: 50%;
-  margin: auto;
+  flex-basis: 100%;
+  display: inline-flex;
+  align-items: center;
   overflow-wrap: break-word;
+  margin-top: 10px;
 }
 
 .files-list div input {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .editor-container {
@@ -188,6 +192,17 @@ if (process.browser) {
 .doc-title-container h3 {
   font-size: 1.5em;
   color: darkgrey;
+}
+
+.loading img {
+  width: 100px;
+  animation: rotating 1000ms infinite;
+}
+
+@keyframes rotating {
+  from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+
 }
 
 
