@@ -51,13 +51,13 @@ if (process.browser) {
       return {
         content: 'Write some text here...',
         title: 'Document title',
+        documents: [],
         loading: true,
       }
     },
     asyncData() {
       return {
         pageIsMounted: false,
-        documents: [],
       }
     },
     components: { VueEditor },
