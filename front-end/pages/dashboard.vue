@@ -8,13 +8,13 @@
             <img src="../assets/img/loading.png" alt="Loading symbol">
           </div>
           <div v-for="document in documents.data">
-          <input type="radio" name="file" value="document.id"> <p>{{ document.title }}</p>
+          <input type="radio" name="file" v-model="currentDocument" :value="document.id"> <p>{{ document.title }}</p>
           </div>
         </form>
           <div class="files-buttons columns">
             <button class="button-green column" v-on:click="newFile" type="button" name="new">New</button>
-            <button class="button-yellow column" type="button" name="save">Edit</button>
-            <button class="button-red column" type="button" name="delete">Delete</button>
+            <button class="button-yellow column" v-on:click="editFile" type="button" name="save">Edit</button>
+            <button class="button-red column" v-on:click="deleteFile" type="button" name="delete">Delete</button>
           </div>
       </div>
 
@@ -31,7 +31,7 @@
       <no-ssr>
         <vue-editor class="editor" v-model="form.body"></vue-editor>
       </no-ssr>
-      <button class="button-green" type="button" name="save">Save</button>
+      <button class="button-green" v-on:click="saveFile" type="button" name="save">Save</button>
     </div>
 
     <button @click.prevent="logout" class="logout-btn">Log out</button>
@@ -51,9 +51,10 @@ if (process.browser) {
       return {
         documents: [],
         loading: true,
+        currentDocument: '',
         form: {
-          title: 'Document title',
-          body: 'Write content here...',
+          title: '',
+          body: '',
           user_id: this.$auth.user.id
         }
       }
@@ -78,9 +79,30 @@ if (process.browser) {
         return this.documents = doc;
       },
       async newFile() {
+        if (!this.form.title || !this.form.body) {
+          const file = {
+            title: 'New file',
+            body: 'Write content here...',
+            user_id: this.$auth.user.id
+          }
+          await this.$axios.post('documents', file);
+          this.fetchData();
+        }
         await this.$axios.post('documents', this.form);
         this.fetchData();
       },
+      async editFile() {
+        const doc = await this.$axios.get('document/' + this.currentDocument);
+        return this.form = doc.data;
+      },
+      async saveFile() {
+        await this.$axios.put('documents/' + this.currentDocument, this.form);
+        this.fetchData();
+      },
+      async deleteFile() {
+        await this.$axios.delete('documents/' + this.currentDocument);
+        this.fetchData();
+      }
     },
     created() {
       this.fetchData();
