@@ -28,7 +28,10 @@ Route::get('me', 'Auth\AuthController@me');
 
 Route::get('documents', 'DocumentsController@index');
 Route::get('document/{documents}', 'DocumentsController@show');
+
+//This shows the list of documents based on user id
 Route::get('documents/{id}', 'DocumentsController@showDocList');
+
 Route::post('documents', 'DocumentsController@store');
 Route::put('documents/{documents}', 'DocumentsController@update');
 Route::delete('documents/{documents}', 'DocumentsController@delete');

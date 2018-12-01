@@ -79,16 +79,12 @@ if (process.browser) {
         return this.documents = doc;
       },
       async newFile() {
-        if (!this.form.title || !this.form.body) {
           const file = {
             title: 'New file',
             body: 'Write content here...',
             user_id: this.$auth.user.id
           }
-          await this.$axios.post('documents', file);
-          this.fetchData();
-        }
-        await this.$axios.post('documents', this.form);
+        await this.$axios.post('documents', file);
         this.fetchData();
       },
       async editFile() {
