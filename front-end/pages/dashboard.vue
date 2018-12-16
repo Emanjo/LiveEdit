@@ -51,12 +51,23 @@ if (process.browser) {
       return {
         documents: [],
         loading: true,
+        socket: {},
         currentDocument: '',
         form: {
           title: '',
           body: '',
           user_id: this.$auth.user.id
         }
+      }
+    },
+    computed: {
+    formBody() {
+      return this.form.body;
+    }
+  },
+    watch: {
+      formBody() {
+          this.socket.send(this.form.body);
       }
     },
     asyncData() {
@@ -100,8 +111,17 @@ if (process.browser) {
         this.fetchData();
       }
     },
-    created() {
+    mounted() {
       this.fetchData();
+
+      this.socket = new WebSocket('ws://localhost:1234');
+
+      this.socket.addEventListener('open', e => { console.log('Connection opened') });
+      this.socket.addEventListener('close', e => { console.log('Connection closed') });
+      this.socket.addEventListener('error', e => { console.log('ERROR') });
+      this.socket.addEventListener('message', e => {
+        this.form.body = e.data;
+      });
     }
   }
 </script>
