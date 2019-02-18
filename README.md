@@ -24,5 +24,3 @@
 ## UX prototype
 https://xd.adobe.com/view/8278f245-293d-4faa-6df3-a7cc1edc5155-f449/
 
-## Extra info:
-Unfortunatly I did not do the virtual machine part of this project. The reason for this is that I prioritezed to get the basic functionality of the the applictaion up and running. It took me more time than expected. I was hoping to deliver a more complete result, but unfortunatly I didn't manage to do so. Part because I'm not an experienced developer and part because I did not have the time.
